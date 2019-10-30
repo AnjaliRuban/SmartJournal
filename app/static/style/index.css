@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow|Literata&display=swap');
+
+body {
+    margin: 0;
+    padding: 0 5% 0 5%;
+    color: #2E1D1E;
+    font-family: 'Barlow', sans-serif;
+}
+
+header {
+    height: 8vh;
+    padding: 5vh 0 1vh 0;
+    border-bottom: 1px solid #D9C9B4;
+}
+
+#logo {
+    height: 7vh;
+    width: 7vw;
+    padding-right: 5vw;
+}
+
+header a {
+    color: #B18C70;
+    padding: 0vh 2vw 0vh 2vw;
+    line-height: 8vh;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #694834;
+}
+
+#title {
+    height: 20vh;
+    text-align: center;
+    padding: 10vh 0 10vh 0;
+    margin: 5vh 0 5vh 0;
+    border-left: 1px solid #B18C70;
+    border-right: 1px solid #B18C70;
+/*    background-color: #EAEAEA;*/
+    background-image: url("../assets/Counselling_session.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    font-family: 'Literata', serif; 
+    color: white;
+}
+
+h2 {
+    font-family: 'Literata', serif;
+}
+
+h3 {
+    color: #EAEAEA;
+}
+

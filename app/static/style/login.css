@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow|Literata&display=swap');
+
+body {
+    font-family: 'Barlow', sans-serif;
+}
+
+h1 {
+    font-family: 'Literata', serif;    
+}
+
+h2 {
+    font-size: 18px;
+    color: #B18C70;
+    margin-bottom: 5vh;
+}
+
+a {
+    font-size: 18px;
+    color: #B18C70;
+}
+
+#email, #name, #password {
+    border: 0px solid white;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid #D9C9B4;
+    margin-bottom: 5vh;
+}
+
+
+
+#email:focus, #password:focus, #name:focus {
+    outline: none;
+}
+
+#submit {
+    border: 0px;
+    padding:  5px 10px 5px 10px;
+    background-color: #E1DAD4;
+    color: #363139;
+    text-decoration: none;
+    left: 20vw;
+    font-size: 20px;
+    font-family: 'Barlow', sans-serif;
+    margin: auto;
+}
+
+#submit:hover {
+    background-color: #D9C9B4;
+}
+
+div {
+    width: 40vw;
+    height: auto;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    margin-top: 20vh;
+    padding: 10px 10px 30px 10px;
+    border: 1px solid #EAEAEA;
+    text-align: center;
+}

@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Anjali Kantharuban">
+        <title>Smart Journal | Dashboard</title>
+        <link href="{{ url_for('static', filename='style/patient.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <img id = "logo" src = "{{ url_for('static', filename='assets/SJ_Logo.png') }}">
+            <h1>Hi, {{name}}.</h1>
+        </header>
+        <div id = "dash">
+            <div id = "posts" class = "column">
+                <h2>Journal Entries</h2>
+                {% for i in range(0, length) %}
+                    <div class="post">
+                        <div class="header">
+                            <h3>{{titles[i]}}</h3>
+                            <h4>{{dates[i]}}</h4>
+                        </div>
+                        <p>{{content[i]}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div id = "chat" class = "column">
+            </div>
+        </div>
+    </body>
+</html>

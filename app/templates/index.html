@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Anjali Kantharuban">
+        <title>Smart Journal | Home</title>
+        <link href="{{ url_for('static', filename='style/index.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <img id = "logo" src = "{{ url_for('static', filename='assets/SJ_Logo.png') }}">
+            <a href = "#why-us">Why Us?</a>
+            <a href = "#for-patients">For Patients</a>
+            <a href = "#for-providers">For Providers</a>
+            <a href = "{{ url_for('login') }}" id = "login">Login</a>
+        </header>
+        <div id = "title">
+            <h1>SmartJournal</h1>
+            <h3>Convinient, daily access to your mental health provider.</h3>
+        </div>
+        <div id = "why-us" class = "para-simple">
+            <h2>Why Us?</h2>
+            <p>Journaling is one of the most commonly used tools by mental health providers because it both helps patients externalize their thoughts and helps providers asses how the patient has been doing outside of the therapy session. We at smart journal believe that this tool can be even more useful. Instead of writing a journal that a psychiatrist may only have time to look at briefly once a session, SmartJournal allows patients to keep a virtual journal that their therapist has 24/7 access to. In addition, our provider suite uses the latest in natural language processing to perform text analyses on each entries, allowing the information to be processed quickly and effortlessly so the provider has more time to spend actually helping their patients.</p>
+        </div>
+        <div id = "for-patients" class = "para-pictext">
+            <h2>For Patients</h2>
+            <p></p>
+        </div>
+        <div id = "for-providers" class = "para-pictext">
+            <h2>For Providers</h2>
+            <p></p>
+        </div>
+    </body>
+</html>

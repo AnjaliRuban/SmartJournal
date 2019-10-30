@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Anjali Kantharuban">
+        <title>Smart Journal | Sign Up</title>
+        <link href="{{ url_for('static', filename='style/login.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <div id = "sign-in">
+            <h1>Sign In</h1>
+            <h2>Have an account? <a href = "{{ url_for('login')}}">Login</a></h2>
+            <form action="" method="post">
+                {{ form.name(placeholder="Name") }} <br>
+                {{ form.email(placeholder="Email") }} <br>
+                {{ form.password(placeholder="Password") }} <br>
+                {{ form.submit(id="submit") }}
+            </form>
+        </div>
+    </body>
+</html>
