@@ -29,7 +29,7 @@ h1 {
 
 #posts {
     text-align: center;
-    width: 70%;
+    width: 60%;
 }
 
 #chat {
@@ -37,6 +37,13 @@ h1 {
 }
 
 .column {
+    float: left;
     padding-top: 3vh;
+    border: 1px solid #EAEAEA;
+    margin: 3vh 2vw 3vh 2vw;
+}
+
+h2 {
+    font-family: 'Literata', serif;
 }
 

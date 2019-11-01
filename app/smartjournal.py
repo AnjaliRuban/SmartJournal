@@ -1,22 +1,17 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 import pyrebase
-from config import FIREBASE_CONFIG
+from config import FIREBASE_CONFIG, SECRET_KEY
 from forms import LoginForm, SignUpForm
 from wtforms import Form, StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email
 
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = SECRET_KEY
 
 firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
 auth = firebase.auth()
 db = firebase.database()
-
-user = None;
-user_data = {
-    "email": "",
-    "name": ""
-            };
 
 @app.route('/')
 def index():
@@ -30,13 +25,16 @@ def login():
             u"email": request.form['email'],
             u"password": request.form['password']
         }
-        user = auth.sign_in_with_email_and_password(data["email"], data["password"])
+        try:
+            user = auth.sign_in_with_email_and_password(data["email"], data["password"])
+        except:
+            return render_template('login.html', form = loginform, wrong = "Either your email or password were incorrect.")
         email = request.form['email'].replace('@', '').replace('.', '')
-        user_data["email"] = email
-        db_data = db.child(user_data["email"]).get().val()
-        user_data["name"] = db_data["name"]
+        session["email"] = email
+        db_data = db.child(session.get("email", None)).get().val()
+        session["name"] = db_data["name"]
         return redirect(url_for("patient_dashboard"))
-    return render_template('login.html', form = loginform)
+    return render_template('login.html', form = loginform, wrong = "")
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -47,7 +45,10 @@ def signup():
             u"email": request.form['email'],
             u"password": request.form['password']
         }
-        user = auth.create_user_with_email_and_password(data["email"], data["password"])
+        try:
+            user = auth.create_user_with_email_and_password(data["email"], data["password"])
+        except:
+            return render_template('signup.html', form = signupform, wrong = "Either your email or password were incorrect.")
         db_data = {
             u"name": request.form['name'],
             u"email": request.form['email'],
@@ -64,24 +65,28 @@ def signup():
             u"title": u"Example Comment",
             u"content": u"Your therapist can comment here!"
         })
-        user_data["email"] = email
-        user_data["name"] = data["name"]
+        session["email"] = email
+        session["name"] = data["name"]
         return redirect(url_for("patient_dashboard"))
         
 
-    return render_template('signup.html', form = signupform)
+    return render_template('signup.html', form = signupform, wrong = "")
 
 @app.route('/dash/') 
 def patient_dashboard():
-    if (not user_data["email"]):
+    if (not session.get("email", None)):
         return redirect(url_for('index'))
-    details = getPosts(user_data["email"])
-    return render_template('patientdashboard.html', name = user_data["name"],
+    details = getPosts(session.get("email", None))
+    return render_template('patientdashboard.html', name = session.get("name", None),
                            length   = details[0], 
                            titles   = details[1], 
                            dates    = details[2], 
                            content  = details[3])
 
+@app.route('/new/')
+def new_post():
+    if (not session.get("email", None)):
+        return redirect(url_for('index'))
 
 def getPosts(email):
     data = db.child(email).child("posts").get().val()
